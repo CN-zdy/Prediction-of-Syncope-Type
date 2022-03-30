@@ -42,7 +42,7 @@ rm_mkdir(path_save_rank)
 
 path_save_models = './results/models/'
 rm_mkdir(path_save_models)
-path_save_models_DT = './results/models/DT/'
+path_save_models_DT = './results/models/DTC/'
 rm_mkdir(path_save_models_DT)
 path_save_models_KNN = './results/models/KNN/'
 rm_mkdir(path_save_models_KNN)
@@ -57,7 +57,7 @@ rm_mkdir(path_save_models_SVM)
 
 path_save_mertics = './results/mertics/'
 rm_mkdir(path_save_mertics)
-path_save_mertics_DT = './results/mertics/DT/'
+path_save_mertics_DT = './results/mertics/DTC/'
 rm_mkdir(path_save_mertics_DT)
 path_save_mertics_KNN = './results/mertics/KNN/'
 rm_mkdir(path_save_mertics_KNN)
@@ -72,7 +72,7 @@ rm_mkdir(path_save_mertics_SVM)
 
 path_save_tpr = './results/ROC/tpr/'
 rm_mkdir(path_save_tpr)
-path_save_tpr_DT = './results/ROC/tpr/DT/'
+path_save_tpr_DT = './results/ROC/tpr/DTC/'
 rm_mkdir(path_save_tpr_DT)
 path_save_tpr_KNN = './results/ROC/tpr/KNN/'
 rm_mkdir(path_save_tpr_KNN)
@@ -87,7 +87,7 @@ rm_mkdir(path_save_tpr_SVM)
 
 path_save_fpr = './results/ROC/fpr/'
 rm_mkdir(path_save_fpr)
-path_save_fpr_DT = './results/ROC/fpr/DT/'
+path_save_fpr_DT = './results/ROC/fpr/DTC/'
 rm_mkdir(path_save_fpr_DT)
 path_save_fpr_KNN = './results/ROC/fpr/KNN/'
 rm_mkdir(path_save_fpr_KNN)
@@ -190,7 +190,7 @@ for topK in tqdm(n_features, desc='Evaluating'):
         y_train, y_test = labels[train_index], labels[test_index]
 
         # --------------------------- LogisticRegression ----------------------------- #
-        # lr = LogisticRegression(class_weight='balanced')   # 初始化
+        # lr = LogisticRegression()   # 初始化
         # name = "LR"
         # ------------------------------- Perceptron --------------------------------- #
         # lr = Perceptron()
@@ -201,9 +201,9 @@ for topK in tqdm(n_features, desc='Evaluating'):
         # name = "SVM"
         # -------------------------- DecisionTreeClassifier -------------------------- #
         # lr = DecisionTreeClassifier(criterion='entropy', splitter="random", max_depth=3, random_state=0)
-        # name = "DT"
+        # name = "DTC"
         # -------------------------- RandomForestClassifier -------------------------- #
-        lr = RandomForestClassifier(criterion='entropy', max_depth=3, random_state=0, n_jobs=2)
+        lr = RandomForestClassifier((n_estimators=108, random_state=0, criterion='entropy', max_depth=3, n_jobs=2, max_leaf_nodes=5, max_samples=220))
         name = "RF"
         # --------------------------- KNeighborsClassifier --------------------------- #
         # lr = KNeighborsClassifier(n_neighbors=3, weights='distance') # 'auto', 'ball_tree', 'kd_tree', 'brute'
