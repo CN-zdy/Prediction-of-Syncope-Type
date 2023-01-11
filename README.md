@@ -10,6 +10,6 @@ The reproducible results are saved in syncope_type_predict.py.
 You can get the prediction results directly through this link：http://183.162.233.24:14414/
 
 
-## Tasks
+## Task
 
 The occurrence of cardiogenic syncope was predicted by electrocardiogram parameters and clinical characteristics.
